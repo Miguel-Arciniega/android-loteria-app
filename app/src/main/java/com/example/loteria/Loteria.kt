@@ -6,7 +6,6 @@ import android.media.MediaPlayer
 import android.view.View
 import kotlinx.coroutines.*
 import java.io.IOException
-import kotlin.coroutines.EmptyCoroutineContext
 
 @SuppressLint("SetTextI18n")
 class Loteria(este: MainActivity) :Thread() {
@@ -18,36 +17,37 @@ class Loteria(este: MainActivity) :Thread() {
     var pausa = true
     var ready = false
 
-    @SuppressLint("SetTextI18n")
     override fun run() {
         super.run()
         while (true) {
             if (!ready) {
-                contador = 0
+                contador = -1
 
                 esteHilo.runOnUiThread {
                     esteHilo.binding.numCartas.text = (contador + 1).toString() + "/54"
                 }
 
                 cuentaRegresiva()
+                sleep(3200)
                 pausa = false
             } else {
                 if (!pausa) {
                     cambiarImagen()
+                    contador++
                 }
             }
-            sleep(2500L)
+            sleep(1800L)
         }
     }
 
     private fun cambiarImagen(){
-        if (contador < 54) {
+        if (contador <= 52) {
             esteHilo.runOnUiThread {
                 esteHilo.binding.image.setImageResource(baraja[contador].imagen)
+                System.out.println("${baraja[contador].name}+ contador: ${contador}")
                 reproducir(contador)
-                esteHilo.binding.numCartas.text = (contador + 1).toString() + "/54"
+                esteHilo.binding.numCartas.text = (contador+1).toString() + "/54"
             }
-            contador++
         }
     }
 
@@ -62,7 +62,7 @@ class Loteria(este: MainActivity) :Thread() {
                 esteHilo.binding.txtcontador.text = (3-contador+1).toString()
             }
             contador++
-            delay(900)
+            delay(800)
         }
         if (contador == 3) {
             esteHilo.runOnUiThread {
