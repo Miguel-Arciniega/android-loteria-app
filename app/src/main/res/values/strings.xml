@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Loteria</string>
+    <string name="nombre">Nombre</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="todo">TODO</string>
+    <string name="pausar">pausar</string>
+    <string name="loteria">¡Loteria!</string>
+    <string name="iniciar_juego">INICIAR JUEGO</string>
+    <string name="suspender">SUSPENDER</string>
+    <string name="loteria_mexicana">LOTERIA MEXICANA</string>
+</resources>
